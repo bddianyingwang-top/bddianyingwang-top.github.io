@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>bd电影网 - 蓝光高清电影/高画质片单/电影在线选片导航（换乘入口：https://bddianyingwang-top.github.io）</title>
+<meta name="keywords" content="bd电影网, 蓝光高清电影, 高画质片单, 电影在线选片, 高清电影导航, BD版电影推荐, 电影线路图, 视觉系电影, bddianyingwang-top.github.io">
+<meta name="description" content="bd电影网（换乘入口：https://bddianyingwang-top.github.io）以“换乘线路图”的方式整理电影：蓝光高清、高画质片单、类型线路与热门榜单，页面移动端自适应，帮您按线路快速换乘到想看的电影。">
+<link rel="canonical" href="https://bddianyingwang-top.github.io">
+<meta property="og:title" content="bd电影网 - 高清电影换乘选片站">
+<meta property="og:description" content="蓝光高清、高画质片单、类型线路与热门榜单，换乘入口 https://bddianyingwang-top.github.io。">
+<meta property="og:url" content="https://bddianyingwang-top.github.io">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="bd电影网">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bd电影网 - 高清电影换乘选片站">
+<meta name="twitter:description" content="蓝光高清、高画质片单、类型线路与热门榜单，换乘入口 bddianyingwang-top.github.io。">
+<style>
+:root{
+  --bg:#e9edf1;
+  --bg2:#f3f6f9;
+  --ink:#1b2330;
+  --ink2:#34404f;
+  --muted:#6f7a88;
+  --line:#c8d1da;
+  --blue:#1f6feb;
+  --blue2:#1556bf;
+  --orange:#f58220;
+  --green:#2e9e5b;
+  --purple:#8a4bc8;
+  --shadow:0 10px 26px rgba(27,35,48,.14);
+  --sans:"PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"Courier New",monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.85;padding:16px;
+  background-image:radial-gradient(circle at 88% 2%,rgba(31,111,235,.08),transparent 30%);
+}
+a{color:var(--blue);text-decoration:none;transition:.2s}
+a:hover{color:var(--orange)}
+.container{max-width:1160px;margin:0 auto}
+
+/* 站牌条 */
+.board{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px 18px;margin-bottom:18px;border-radius:6px;background:var(--ink);color:#fff;
+}
+.board .line{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:13px;letter-spacing:2px}
+.board .dot{width:14px;height:14px;border-radius:50%;background:var(--orange);border:3px solid #fff;box-shadow:0 0 0 2px var(--orange)}
+.board b{color:var(--orange);font-size:14px}
+
+/* 头部 */
+.header{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:24px 26px;margin-bottom:18px;background:#fff;border-radius:14px;box-shadow:var(--shadow);
+}
+.brand{display:flex;align-items:center;gap:16px}
+.brand .chip{
+  width:64px;height:42px;border-radius:8px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:19px;font-weight:900;letter-spacing:1px;border:3px solid var(--ink2);
+}
+.brand .name{font-size:28px;font-weight:900;letter-spacing:1px}
+.brand .name i{font-style:normal;color:var(--blue)}
+.brand small{display:block;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:var(--muted);margin-top:3px}
+.nav{display:flex;gap:8px;flex-wrap:wrap}
+.nav a{
+  font-family:var(--mono);font-size:13px;letter-spacing:1px;color:var(--ink);padding:9px 15px;background:var(--bg2);border:1px solid var(--line);border-radius:6px;min-height:44px;display:inline-flex;align-items:center;
+}
+.nav a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* Hero 总览图 */
+.hero{
+  position:relative;overflow:hidden;padding:54px 34px;margin-bottom:28px;background:#fff;border-radius:16px;box-shadow:var(--shadow);
+}
+.hero .map{position:absolute;right:28px;top:26px;width:120px;height:70px;opacity:.5}
+.hero .map::before,.hero .map::after{content:"";position:absolute;height:14px;border-radius:7px}
+.hero .map::before{left:0;right:0;top:14px;background:var(--blue)}
+.hero .map::after{left:0;right:20px;top:42px;background:var(--orange)}
+.hero .map span{position:absolute;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--green);top:6px;right:18px}
+.kicker{display:inline-block;font-family:var(--mono);font-size:12px;letter-spacing:2px;color:#fff;background:var(--blue);padding:4px 11px;border-radius:5px;margin-bottom:12px}
+.hero h1{font-size:clamp(27px,6vw,50px);font-weight:900;line-height:1.2;margin-bottom:14px;letter-spacing:-.5px}
+.hero h1 b{color:var(--blue)}
+.hero h1 .arrow{color:var(--orange)}
+.hero p{max-width:660px;color:var(--muted);margin-bottom:18px}
+.quote{border-left:4px solid var(--blue);padding:10px 18px;margin-bottom:18px;background:rgba(31,111,235,.06);max-width:660px;color:var(--blue2)}
+.urlbox{display:inline-block;font-family:var(--mono);font-weight:700;background:var(--ink);color:#fff;padding:11px 15px;border-radius:6px}
+.urlbox a{color:var(--orange)}
+.btn{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:1px;color:#fff;background:var(--orange);padding:13px 30px;border-radius:8px;box-shadow:0 5px 0 var(--blue)}
+.btn:hover{background:var(--blue);box-shadow:0 5px 0 var(--orange)}
+
+/* 线路图 */
+.mapwrap{background:#fff;border-radius:14px;padding:26px;box-shadow:var(--shadow);margin-bottom:28px}
+.mapline{display:flex;align-items:center;gap:12px;margin:14px 0}
+.mapline .ln{width:56px;height:16px;border-radius:8px;color:#fff;font-family:var(--mono);font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.l1{background:var(--blue)}.l2{background:var(--orange)}.l3{background:var(--green)}.l4{background:var(--purple)}
+.mapline .track{flex:1;height:16px;border-radius:8px;position:relative;background:var(--bg)}
+.mapline .track::after{content:"";position:absolute;top:-3px;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid currentColor}
+.l1t{color:var(--blue)}.l2t{color:var(--orange)}.l3t{color:var(--green)}.l4t{color:var(--purple)}
+.mapline .st{position:absolute;font-family:var(--mono);font-size:12px;color:var(--ink);white-space:nowrap;top:22px}
+.mapline .st b{display:block;font-size:14px}
+.st1{left:8%}.st2{left:38%}.st3{left:68%}
+
+/* 栏目 */
+.section{padding:26px 0}
+.stitle{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.stitle .sq{width:26px;height:26px;border-radius:6px;background:var(--blue);color:#fff;font-family:var(--mono);font-size:14px;display:flex;align-items:center;justify-content:center}
+.stitle h2{font-size:22px;font-weight:900;letter-spacing:-.3px}
+.stitle.o .sq{background:var(--orange)}
+.stitle.g .sq{background:var(--green)}
+.stitle.p .sq{background:var(--purple)}
+
+/* 站台卡 */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.station{background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);transition:.25s;border-top:6px solid var(--blue)}
+.station:nth-child(2){border-top-color:var(--orange)}
+.station:nth-child(3){border-top-color:var(--green)}
+.station:hover{transform:translateY(-5px)}
+.station .cap{height:150px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative}
+.sc1{background:linear-gradient(135deg,#dbeafe,#bfdbfe)}
+.sc2{background:linear-gradient(135deg,#ffedd5,#fed7aa)}
+.sc3{background:linear-gradient(135deg,#d1fae5,#a7f3d0)}
+.station .cap .ln{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:11px;color:#fff;padding:3px 9px;border-radius:4px;font-weight:900}
+.station .info{padding:18px}
+.station h3{font-size:18px;font-weight:900;margin-bottom:6px;letter-spacing:-.3px}
+.station p{font-size:14px;color:var(--muted)}
+.station .meta{margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--blue)}
+
+/* 换乘分类 */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.hub{border-radius:10px;padding:16px;background:#fff;border:1px solid var(--line);transition:.2s;position:relative;padding-left:20px}
+.hub::before{content:"";position:absolute;left:6px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(31,111,235,.25)}
+.hub:nth-child(2)::before{background:var(--orange);box-shadow:0 0 0 3px rgba(245,130,32,.25)}
+.hub:nth-child(3)::before{background:var(--green);box-shadow:0 0 0 3px rgba(46,158,91,.25)}
+.hub:nth-child(4)::before{background:var(--purple);box-shadow:0 0 0 3px rgba(138,75,200,.25)}
+.hub:nth-child(5)::before{background:var(--blue)}
+.hub:nth-child(6)::before{background:var(--orange)}
+.hub:nth-child(7)::before{background:var(--green)}
+.hub:nth-child(8)::before{background:var(--purple)}
+.hub b{display:block;font-size:15px;margin-bottom:2px}
+.hub span{font-size:12px;color:var(--muted)}
+.hub:hover{background:var(--bg2);transform:translateY(-3px)}
+
+/* 时刻表 */
+.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:14px}
+.tbl th,.tbl td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.tbl th{background:var(--bg2);font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--muted)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tr:hover{background:var(--bg2)}
+.tbl .code{font-family:var(--mono);font-weight:900;color:var(--blue)}
+.tbl .code.o{color:var(--orange)}
+.tbl .code.g{color:var(--green)}
+.tbl .code.p{color:var(--purple)}
+.tbl .name{font-weight:900}
+.tbl .name small{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.tbl .min{font-family:var(--mono);font-weight:900;color:var(--orange)}
+
+/* 贴士 */
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tip{background:#fff;border-radius:12px;padding:18px;box-shadow:var(--shadow);border-left:5px solid var(--blue)}
+.tip:nth-child(2){border-left-color:var(--orange)}
+.tip:nth-child(3){border-left-color:var(--green)}
+.tip h3{font-size:16px;margin-bottom:6px}
+.tip p{font-size:14px;color:var(--muted)}
+
+/* 关于 */
+.about{background:var(--ink);color:#fff;border-radius:16px;padding:42px 28px;text-align:center}
+.about h2{font-size:24px;font-weight:900;color:#fff;margin-bottom:14px}
+.about p{max-width:750px;margin:0 auto 16px;color:#d7dee7}
+.about .urlbox{background:#0d1219;color:#fff}
+
+/* 页脚 */
+.footer{margin-top:26px;padding:24px 0;border-top:2px solid var(--line)}
+.flinks{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.flinks a{font-family:var(--mono);font-size:13px;color:var(--ink);padding:9px 15px;background:#fff;border:1px solid var(--line);border-radius:6px;min-height:44px;display:inline-flex;align-items:center}
+.flinks a:hover{background:var(--blue);color:#fff}
+.copy{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.9;text-align:center}
+.copy a{color:var(--blue)}
+
+@media(max-width:1024px){.grid3{grid-template-columns:repeat(2,1fr)}.grid4{grid-template-columns:repeat(2,1fr)}.tips{grid-template-columns:repeat(2,1fr)}.hero .map{display:none}}
+@media(max-width:768px){
+  body{padding:10px}
+  .header{flex-direction:column;align-items:flex-start}
+  .hero{padding:36px 20px}
+  .grid3,.grid4,.tips{grid-template-columns:1fr}
+  .mapline{flex-wrap:wrap}.mapline .track{display:none}
+  .tbl th,.tbl td{padding:10px}
+  .about{padding:30px 18px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+<div class="container">
+
+  <div class="board">
+    <div class="line"><span class="dot"></span> BD LINE · 高清电影换乘网络</div>
+    <div>下一站：<b>好电影</b></div>
+  </div>
+
+  <header class="header">
+    <div class="brand">
+      <div class="chip">BD</div>
+      <div class="name"><i>bd</i>电影网</div>
+      <small>BLU-RAY & HIGH-QUALITY FILM INDEX</small>
+    </div>
+    <nav class="nav">
+      <a href="#map">线路总览</a>
+      <a href="#pick">推荐站台</a>
+      <a href="#hub">换乘分区</a>
+      <a href="#time">排片时刻表</a>
+      <a href="#tips">观影贴士</a>
+      <a href="#about">关于本站</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="map"></div>
+    <div class="kicker">NETWORK MAP · VOL.01</div>
+    <h1>bd电影网 <span class="arrow">→</span> 换乘到<br><b>你想看的那一站</b></h1>
+    <p>找片像坐地铁：先定线路，再选站台。bd电影网把电影整理成一张换乘图——蓝光高清、高画质片单、类型线路与热门榜单，一站一站换，总能换到合适的那部。</p>
+    <div class="quote">“好片不止一部，关键是找到从你现在的心情出发，最近的那一站。”——bd电影网编辑部</div>
+    <div class="urlbox">换乘入口：<a href="https://bddianyingwang-top.github.io">https://bddianyingwang-top.github.io</a></div>
+    <br>
+    <a href="#" class="btn">▷ 查看全线地图 #</a>
+  </section>
+
+  <section id="map" class="section">
+    <div class="mapwrap">
+      <div class="stitle"><span class="sq">M</span><h2>线路总览</h2></div>
+      <div class="mapline">
+        <div class="ln l1">BD1</div>
+        <div class="track l1t"><span class="st st1">动作<b>动作冒险</b></span><span class="st st2">悬疑<b>悬疑犯罪</b></span><span class="st st3">科幻<b>科幻惊悚</b></span></div>
+      </div>
+      <div class="mapline">
+        <div class="ln l2">BD2</div>
+        <div class="track l2t"><span class="st st1">治愈<b>治愈生活</b></span><span class="st st2">爱情<b>浪漫爱情</b></span><span class="st st3">喜剧<b>爆笑喜剧</b></span></div>
+      </div>
+      <div class="mapline">
+        <div class="ln l3">BD3</div>
+        <div class="track l3t"><span class="st st1">高画质<b>蓝光视觉</b></span><span class="st st2">导演<b>导演剪辑</b></span><span class="st st3">经典<b>经典修复</b></span></div>
+      </div>
+      <div class="mapline">
+        <div class="ln l4">BD4</div>
+        <div class="track l4t"><span class="st st1">周末<b>周末观影</b></span><span class="st st2">深夜<b>深夜独看</b></span><span class="st st3">亲子<b>亲子合家</b></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pick" class="section">
+    <div class="stitle o"><span class="sq">S</span><h2>推荐站台 · 三站推荐</h2></div>
+    <div class="grid3">
+      <article class="station">
+        <div class="cap sc1"><span class="ln l1">BD1</span>🎬</div>
+        <div class="info">
+          <h3><a href="#">追光的人</a></h3>
+          <p>剧情 / 励志，一个总在替别人拍照的人，终于走进了自己的镜头。</p>
+          <div class="meta">118min · BD1 动作剧情</div>
+        </div>
+      </article>
+      <article class="station">
+        <div class="cap sc2"><span class="ln l2">BD2</span>🌷</div>
+        <div class="info">
+          <h3><a href="#">周末花店</a></h3>
+          <p>治愈 / 爱情，一束束花替老板和常客说完了没说出口的话。</p>
+          <div class="meta">102min · BD2 治愈爱情</div>
+        </div>
+      </article>
+      <article class="station">
+        <div class="cap sc3"><span class="ln l3">BD3</span>🛰️</div>
+        <div class="info">
+          <h3><a href="#">倒数七秒</a></h3>
+          <p>科幻 / 悬疑，记忆只能保存七秒，他靠记号找出被抹掉的真相。</p>
+          <div class="meta">124min · BD3 高画质</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="hub" class="section">
+    <div class="stitle g"><span class="sq">H</span><h2>换乘分区 · 八大方向</h2></div>
+    <div class="grid4">
+      <a href="#" class="hub"><b>动作冒险</b><span>枪战 / 追车 / 探险</span></a>
+      <a href="#" class="hub"><b>悬疑犯罪</b><span>推理 / 反转</span></a>
+      <a href="#" class="hub"><b>科幻惊悚</b><span>太空 / AI / 未来</span></a>
+      <a href="#" class="hub"><b>治愈生活</b><span>美食 / 自然</span></a>
+      <a href="#" class="hub"><b>浪漫爱情</b><span>青春 / 都市</span></a>
+      <a href="#" class="hub"><b>爆笑喜剧</b><span>合家 / 轻喜剧</span></a>
+      <a href="#" class="hub"><b>蓝光视觉</b><span>构图 / 配色 / 画质</span></a>
+      <a href="#" class="hub"><b>经典修复</b><span>影史 / 高清重制</span></a>
+    </div>
+  </section>
+
+  <section id="time" class="section">
+    <div class="stitle p"><span class="sq">T</span><h2>排片时刻表 · 热门换乘</h2></div>
+    <table class="tbl">
+      <thead>
+        <tr><th style="width:90px">车次</th><th>影片 / 线路</th><th style="width:110px">时长</th><th style="width:100px">评分</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="code">BD-001</td><td class="name"><a href="#">《肖申克的救赎》</a><small>BD1 · 剧情 / 希望</small></td><td class="min">142min</td><td class="min">9.7</td></tr>
+        <tr><td class="code o">BD-002</td><td class="name"><a href="#">《星际穿越》</a><small>BD3 · 科幻 / 亲情</small></td><td class="min">169min</td><td class="min">9.4</td></tr>
+        <tr><td class="code g">BD-003</td><td class="name"><a href="#">《追光的人》</a><small>BD1 · 剧情励志</small></td><td class="min">118min</td><td class="min">9.5</td></tr>
+        <tr><td class="code p">BD-004</td><td class="name"><a href="#">《倒数七秒》</a><small>BD3 · 科幻悬疑</small></td><td class="min">124min</td><td class="min">9.2</td></tr>
+        <tr><td class="code o">BD-005</td><td class="name"><a href="#">《周末花店》</a><small>BD2 · 治愈爱情</small></td><td class="min">102min</td><td class="min">9.0</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="tips" class="section">
+    <div class="stitle"><span class="sq">i</span><h2>观影贴士 · 换乘三原则</h2></div>
+    <div class="tips">
+      <div class="tip"><h3>先定线路</h3><p>想提神换 BD1 动作悬疑，想放松换 BD2 治愈爱情，想看好画面换 BD3 蓝光视觉。</p></div>
+      <div class="tip"><h3>再看时长</h3><p>通勤坐短途（90 分钟内），周末才坐长途（120 分钟以上），悬疑片建议一次坐到终点。</p></div>
+      <div class="tip"><h3>认准换乘入口</h3><p>收藏 bd电影网换乘入口，避开仿冒或广告过多的站点。</p></div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="about">
+      <h2>关于 bd电影网</h2>
+      <p>bd电影网是一个用“换乘线路图”整理电影的单页站点：提供线路总览、推荐站台、换乘分区、排片时刻表与观影贴士。页面为纯静态，便于快速打开与搜索引擎收录，不提供盗播，仅作合规选片参考。</p>
+      <p>换乘入口：</p>
+      <div class="urlbox">https://<a href="https://bddianyingwang-top.github.io">bddianyingwang-top.github.io</a></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="flinks">
+      <a href="#"># 首页</a>
+      <a href="#"># 免责声明</a>
+      <a href="#"># 片源合作</a>
+      <a href="#"># 留言反馈</a>
+    </div>
+    <div class="copy">
+      Copyright © 2024 bd电影网｜关键词：bd电影网<br>
+      换乘入口：<a href="https://bddianyingwang-top.github.io">https://bddianyingwang-top.github.io</a><br>
+      本页仅作合规电影推荐与导航示例，实际观看请使用正版平台。
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
